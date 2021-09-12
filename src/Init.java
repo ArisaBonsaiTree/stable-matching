@@ -6,18 +6,18 @@ public class Init {
     // Hospital Objects
 
     //Remove V and W
-    Hospital A = new Hospital("A",false, new String[]{"Y", "Z", "X"}, "");
-    Hospital B = new Hospital("B",false, new String[]{"Y","X", "Z"}, "");
-    Hospital C = new Hospital("C",false, new String[]{"Z", "X", "Y"}, "");
-    // Hospital D = new Hospital("C",false, new String[]{"V", "Y", "X", "W", "Z"}, "");
-    // Hospital E = new Hospital("C",false, new String[]{"W", "Y", "V", "Z", "X"}, "");
+    Hospital A = new Hospital("A",false, new String[]{"W","V","Y", "Z", "X"}, "");
+    Hospital B = new Hospital("B",false, new String[]{"Y","W","V", "X", "Z"}, "");
+    Hospital C = new Hospital("C",false, new String[]{"W","Z","X", "Y", "V"}, "");
+    Hospital D = new Hospital("D",false, new String[]{"V", "Y", "X", "W", "Z"}, "");
+    Hospital E = new Hospital("E",false, new String[]{"W", "Y", "V", "Z", "X"}, "");
 
     // Student Objects
-    // Student V = new Student("X", false, new String[]{"E","A","B","D","C"}, "");
-    // Student W = new Student("X", false, new String[]{"C","B","D","A","E"}, "");
-    Student X = new Student("X", false, new String[]{"B","C","A"}, "");
-    Student Y = new Student("Y", false, new String[]{"A","C","B"}, "");
-    Student Z = new Student("Z", false, new String[]{"B","C","A"}, "");
+    Student V = new Student("V", false, new String[]{"E","A","B","D","C"}, "");
+    Student W = new Student("W", false, new String[]{"C","B","D","A","E"}, "");
+    Student X = new Student("X", false, new String[]{"B","C","D","E","A"}, "");
+    Student Y = new Student("Y", false, new String[]{"A","E","D","C","B"}, "");
+    Student Z = new Student("Z", false, new String[]{"D","B","E","C","A"}, "");
 
     // Group the objects for ease of access
     List<Hospital> hospitals = new ArrayList();
@@ -72,7 +72,8 @@ public class Init {
         // Keep running until All of the hospitals are true
         // hospitals.get(i) 0 - A  1 - B 2 - C
         //|| D.isTaken() == false || E.isTaken() == false
-        while(A.isTaken() == false || B.isTaken() == false || C.isTaken() == false ) {
+        outer_plusOne:
+        while(A.isTaken() == false || B.isTaken() == false || C.isTaken() == false || D.isTaken() == false || E.isTaken() == false) {
             // Detect that Hospital A is false
             outer:
             if (hospitals.get(i).isTaken() == false) {
@@ -123,7 +124,7 @@ public class Init {
                                     break checkAgain;
                                 }
                                 // The student prefers the offered hospital over the one they are taken by
-                                else if (offered < takenBy) {
+                                else if (offered < takenByValue) {
                                     m = 0;
                                     System.out.println("Better offer found");
 
@@ -148,14 +149,16 @@ public class Init {
                                     // Taken hospita
                                     hospitals.get(m).isTaken = false;
                                     hospitals.get(m).setTakenBy("");
-                                    hospitals.get(m).getArrayList().remove(0);
-                                    i = 0;
-                                    break outer;
-
-
+                                    // hospitals.get(m).getArrayList().remove(0);
+                                    i = -1;
+                                    num = 0;
+                                    break;
                                 }
+
                             }
+
                         }
+
                         // If Student[0] doesn't match, they will look at student[1] and student[2]
                         else{
                             // If the hospital isn't it, move on to the next one
@@ -168,7 +171,10 @@ public class Init {
                 } // Keep looping until Hospital A is true  END OF WHILE LOOP
 
             }
-            i+=1;
+                // Break outer leads here
+                i+=1;
+
+
         }
     }
 
@@ -180,11 +186,11 @@ public class Init {
         hospitals.add(A);
         hospitals.add(B);
         hospitals.add(C);
-        // hospitals.add(D);
-        // hospitals.add(E);
+        hospitals.add(D);
+        hospitals.add(E);
 
-        // students.add(V);
-        // students.add(W);
+        students.add(V);
+        students.add(W);
         students.add(X);
         students.add(Y);
         students.add(Z);
