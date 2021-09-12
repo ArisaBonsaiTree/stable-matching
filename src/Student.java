@@ -1,11 +1,15 @@
 // Comment
 
 
+import java.util.ArrayList;
+
 public class Student {
     String name;
-    boolean isTaken = false;
+    boolean isTaken;
     String[] choices;
     String takenBy;
+
+
     int startCount = 0;
 
     public Student(String name, boolean isTaken, String[] choices, String takenBy) {
@@ -13,7 +17,10 @@ public class Student {
         this.isTaken = isTaken;
         this.choices = choices;
         this.takenBy = takenBy;
+
+
     }
+
     public String getName() {
         return name;
     }
