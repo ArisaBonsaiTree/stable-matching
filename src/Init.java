@@ -44,6 +44,15 @@ public class Init {
 
         // Print the results
         printStable();
+
+        System.out.printf("\nSwapping the hospital order\n\n");
+        swapTheHospitals();
+        shortDisplayHospital();
+        System.out.printf("\n");
+        shortDisplayStudent();
+        findStable();
+        printStable();
+
     }
 
 
@@ -73,7 +82,7 @@ public class Init {
         // hospitals.get(i) 0 - A  1 - B 2 - C
         //|| D.isTaken() == false || E.isTaken() == false
         outer_plusOne:
-        while(A.isTaken() == false || B.isTaken() == false || C.isTaken() == false || D.isTaken() == false || E.isTaken() == false) {
+        while(hospitals.get(0).isTaken() == false || hospitals.get(1).isTaken() == false || hospitals.get(2).isTaken() == false || hospitals.get(3).isTaken() == false || hospitals.get(4).isTaken() == false) {
             // Detect that Hospital A is false
             outer:
             if (hospitals.get(i).isTaken() == false) {
@@ -179,6 +188,34 @@ public class Init {
     }
 
 
+    public void swapTheHospitals(){
+        hospitals.clear();
+        students.clear();
+
+        Hospital ANew = new Hospital("A",false, new String[]{"W","V","Y", "Z", "X"}, "");
+        Hospital BNew = new Hospital("B",false, new String[]{"Y","W","V", "X", "Z"}, "");
+        Hospital CNew = new Hospital("C",false, new String[]{"W","Z","X", "Y", "V"}, "");
+        Hospital DNew = new Hospital("D",false, new String[]{"V", "Y", "X", "W", "Z"}, "");
+        Hospital ENew = new Hospital("E",false, new String[]{"W", "Y", "V", "Z", "X"}, "");
+
+        Student VNew = new Student("V", false, new String[]{"E","A","B","D","C"}, "");
+        Student WNew = new Student("W", false, new String[]{"C","B","D","A","E"}, "");
+        Student XNew = new Student("X", false, new String[]{"B","C","D","E","A"}, "");
+        Student YNew = new Student("Y", false, new String[]{"A","E","D","C","B"}, "");
+        Student ZNew = new Student("Z", false, new String[]{"D","B","E","C","A"}, "");
+
+        hospitals.add(DNew);
+        hospitals.add(ENew);
+        hospitals.add(CNew);
+        hospitals.add(ANew);
+        hospitals.add(BNew);
+
+        students.add(VNew);
+        students.add(WNew);
+        students.add(XNew);
+        students.add(YNew);
+        students.add(ZNew);
+    }
 
 
     // Place the objects into an ArrayList
